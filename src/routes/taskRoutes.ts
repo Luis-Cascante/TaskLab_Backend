@@ -21,11 +21,11 @@ const searchTaskIdSchema = z.object({
 });
 
 const searchTaskCategorySchema = z.object({
-    category_id: z.string().uuid().optional()
+    category: z.string().uuid().optional()
 });
 
 const searchTaskAgreementSchema = z.object({
-    agreement_id: z.string().uuid().optional()
+    agreement: z.string().uuid().optional()
 });
 
 const router = Router();
@@ -42,16 +42,16 @@ id de prueba usado como parametro en la ruta, debe ser un UUID válido, este es 
 123e4567-e89b-12d3-a456-426614174000
 */
 
-router.get("/category/:id", validateParams(searchTaskCategorySchema), (req, res) => {
-    res.status(200).json({ message: `Details of task with category id ${req.params.category_id}` });
+router.get("/category/:category", validateParams(searchTaskCategorySchema), (req, res) => {
+    res.status(200).json({ message: `Details of task with category id ${req.params.category}` });
 });
 /*
 id de prueba usado como parametro en la ruta, debe ser un UUID válido, este es de prueba
 123e4567-e89b-12d3-a456-426614174000
 */
 
-router.get("/agreement/:id", validateParams(searchTaskAgreementSchema), (req, res) => {
-    res.status(200).json({ message: `Details of task with agreement id ${req.params.agreement_id}` });
+router.get("/agreement/:agreement", validateParams(searchTaskAgreementSchema), (req, res) => {
+    res.status(200).json({ message: `Details of task with agreement id ${req.params.agreement}` });
 });
 /*
 id de prueba usado como parametro en la ruta, debe ser un UUID válido, este es de prueba

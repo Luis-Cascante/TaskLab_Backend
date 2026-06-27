@@ -1,4 +1,5 @@
 import { pgTable, uuid, text, timestamp, integer} from "drizzle-orm/pg-core";
+import {relations} from "drizzle-orm";
 
 export const users = pgTable('users', {
     id: uuid('id').primaryKey().defaultRandom(),
@@ -35,3 +36,29 @@ export const tasks = pgTable('tasks', {
     updated_at: timestamp('updated_at').defaultNow().notNull()
 });
 
+export const categoryRelations = relations(task_categories, ({many}) => ({
+    tasks: many(tasks)
+}));
+
+export const agreementRelations = relations(task_agreements, ({many}) => ({
+    tasks: many(tasks)
+}));
+
+export const taskRelations = relations(tasks, ({one}) => ({
+    employer: one(users, {
+        fields: [tasks.employer_id],
+        references: [users.id]
+    }),
+    category: one(task_categories, {
+        fields: [tasks.category_id],
+        references: [task_categories.id]
+    }),
+    agreement: one(task_agreements, {
+        fields: [tasks.agreement_id],
+        references: [task_agreements.id]
+    })
+}));
+
+export const userRelations = relations(users, ({many}) => ({
+    tasks: many(tasks)
+}));
