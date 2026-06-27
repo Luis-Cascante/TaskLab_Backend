@@ -14,7 +14,7 @@ const updateUserSchema = userSchema;
 const partialUpdateUserSchema = userSchema.partial();
 
 const searchUserIdSchema = z.object({
-    id: z.string().uuid().optional()
+    id: z.string().uuid()
 });
 
 const router = Router();

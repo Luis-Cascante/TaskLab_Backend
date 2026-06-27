@@ -17,15 +17,15 @@ const updateTaskSchema = createTaskSchema;
 const partialUpdateTaskSchema = createTaskSchema.partial();
 
 const searchTaskIdSchema = z.object({
-    id: z.string().uuid().optional()
+    id: z.string().uuid()
 });
 
 const searchTaskCategorySchema = z.object({
-    category: z.string().uuid().optional()
+    category: z.string().uuid()
 });
 
 const searchTaskAgreementSchema = z.object({
-    agreement: z.string().uuid().optional()
+    agreement: z.string().uuid()
 });
 
 const router = Router();
